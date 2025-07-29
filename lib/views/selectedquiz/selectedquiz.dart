@@ -1,6 +1,6 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
-import 'package:quizappwork/example.dart';
+
 import 'package:quizappwork/views/dummy/dummy.dart';
 import 'package:quizappwork/views/dummy/indexclick.dart';
 import 'package:quizappwork/views/resultscreen/result.dart';
@@ -13,9 +13,12 @@ class Selectedquiz extends StatefulWidget {
 }
 
 class _SelectedquizState extends State<Selectedquiz> {
+  CountDownController controller = CountDownController();
+
   int selectedquest = 0;
   int? clickedindex;
   int linearvalue = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,9 +32,9 @@ class _SelectedquizState extends State<Selectedquiz> {
             SizedBox(height: 50),
             _linearindicator(),
             CircularCountDownTimer(
-              duration: 5,
+              duration: 30,
               initialDuration: 0,
-              controller: CountDownController(),
+              controller: controller,
               width: 50,
               //MediaQuery.of(context).size.width / 2,
               height: 50,
@@ -64,7 +67,7 @@ class _SelectedquizState extends State<Selectedquiz> {
                   linearvalue++;
                   clickedindex = null;
 
-                  // CountDownController().isRestarted;
+                  controller.restart(duration: 30);
 
                   setState(() {});
                 } else {
@@ -76,9 +79,6 @@ class _SelectedquizState extends State<Selectedquiz> {
                 }
               },
 
-              onChange: (String timeStamp) {
-                CountDownController().isRestarted;
-              },
               timeFormatterFunction: (defaultFormatterFunction, duration) {
                 if (duration.inSeconds == 0) {
                   return "Start";
@@ -206,6 +206,7 @@ class _SelectedquizState extends State<Selectedquiz> {
           selectedquest++;
           linearvalue++;
           clickedindex = null;
+          controller.restart(duration: 30);
           setState(() {});
         } else {
           Navigator.pushReplacement(

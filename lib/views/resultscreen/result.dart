@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quizappwork/example.dart';
+
 import 'package:quizappwork/views/dummy/dummy.dart';
 import 'package:quizappwork/views/dummy/indexclick.dart';
 import 'package:quizappwork/views/randomquiz/randomquizscreen.dart';
