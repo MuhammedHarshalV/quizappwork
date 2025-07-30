@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quizappwork/example.dart';
+import 'package:quizappwork/models/example.dart';
 
 class Dummy {
   static List<Questions> footballQuestions = [

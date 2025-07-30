@@ -30,16 +30,17 @@ class _SelectedquizState extends State<Selectedquiz> {
           spacing: 5,
           children: [
             SizedBox(height: 50),
+            //top indicator
             _linearindicator(),
+            //timer settings
             CircularCountDownTimer(
-              duration: 30,
+              duration: 31,
               initialDuration: 0,
               controller: controller,
               width: 50,
-              //MediaQuery.of(context).size.width / 2,
+
               height: 50,
 
-              // MediaQuery.of(context).size.height / 2,
               ringColor: Colors.grey,
               ringGradient: null,
               fillColor: Colors.blue,
@@ -55,10 +56,9 @@ class _SelectedquizState extends State<Selectedquiz> {
               ),
               textAlign: TextAlign.center,
               textFormat: CountdownTextFormat.S,
-              isReverse: false,
+              isReverse: true,
               isReverseAnimation: false,
               isTimerTextShown: true,
-              autoStart: true,
 
               onComplete: () {
                 if (selectedquest <
@@ -66,28 +66,27 @@ class _SelectedquizState extends State<Selectedquiz> {
                   selectedquest++;
                   linearvalue++;
                   clickedindex = null;
-
-                  controller.restart(duration: 30);
-
-                  setState(() {});
+                  //timer restarting function
+                  controller.restart(duration: 31);
                 } else {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => Result()),
                   );
-                  setState(() {});
                 }
+                //  _nextbutton(context);
+                setState(() {});
               },
 
               timeFormatterFunction: (defaultFormatterFunction, duration) {
                 if (duration.inSeconds == 0) {
-                  return "Start";
+                  return "0";
                 } else {
                   return Function.apply(defaultFormatterFunction, [duration]);
                 }
               },
             ),
-
+            //question section
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(10),
@@ -117,7 +116,7 @@ class _SelectedquizState extends State<Selectedquiz> {
                 ),
               ),
             ),
-
+            //option sections
             Container(
               child: Column(
                 spacing: 3,
@@ -206,15 +205,14 @@ class _SelectedquizState extends State<Selectedquiz> {
           selectedquest++;
           linearvalue++;
           clickedindex = null;
-          controller.restart(duration: 30);
-          setState(() {});
+          controller.restart(duration: 31);
         } else {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => Result()),
           );
-          setState(() {});
         }
+        setState(() {});
       },
       child: Container(
         height: 30,

@@ -23,7 +23,7 @@ class _ResultState extends State<Result> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(height: 50),
-          Text(Indexclick.correctanswer.toString()),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: 20,

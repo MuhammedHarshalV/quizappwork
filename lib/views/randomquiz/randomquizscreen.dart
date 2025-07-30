@@ -23,6 +23,7 @@ class _RandomState extends State<Random> {
           children: [
             Padding(padding: EdgeInsets.all(10)),
             SizedBox(height: 50),
+            //top section
             _hicontainer(),
             Text(
               '   Let\'s play',
@@ -32,6 +33,7 @@ class _RandomState extends State<Random> {
               ),
             ),
             SizedBox(height: 20),
+            //grid of selections
             GridView.builder(
               padding: EdgeInsets.all(20),
               physics: NeverScrollableScrollPhysics(),
@@ -68,7 +70,7 @@ class _RandomState extends State<Random> {
                                 Dummy.gridicon[index].icon,
                                 color: index > 1 ? Colors.red : Colors.amber,
 
-                                size: 150,
+                                size: 100,
                               ),
                             ),
                             Text(
