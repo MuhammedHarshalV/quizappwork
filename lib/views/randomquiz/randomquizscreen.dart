@@ -48,7 +48,7 @@ class _RandomState extends State<Random> {
                   (context, index) => InkWell(
                     onTap: () {
                       Indexclick.gridclickindex = index;
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(builder: (context) => Selectedquiz()),
                       );

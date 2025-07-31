@@ -69,9 +69,10 @@ class _SelectedquizState extends State<Selectedquiz> {
                   //timer restarting function
                   controller.restart(duration: 31);
                 } else {
-                  Navigator.pushReplacement(
+                  Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(builder: (context) => Result()),
+                    (route) => false,
                   );
                 }
                 //  _nextbutton(context);
