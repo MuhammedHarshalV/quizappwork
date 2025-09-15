@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizappwork/controler/accountcontroler.dart';
 import 'package:quizappwork/views/accountpage/account.dart';
 
 import 'package:quizappwork/views/dummy/dummy.dart';
@@ -13,6 +14,20 @@ class Random extends StatefulWidget {
 }
 
 class _RandomState extends State<Random> {
+  String username1 = '';
+  @override
+  void initState() {
+    getnamefunction();
+    super.initState();
+  }
+
+  Future<void> getnamefunction() async {
+    String name = await AppUtils.getname();
+    setState(() {
+      username1 = name;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,7 +137,7 @@ class _RandomState extends State<Random> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                'Hi, Player',
+                'Hi, ${username1.isEmpty ? 'Player' : '$username1'}',
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,

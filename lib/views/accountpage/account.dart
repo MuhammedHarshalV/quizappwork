@@ -10,15 +10,18 @@ class Account extends StatefulWidget {
 
 class _AccountState extends State<Account> {
   TextEditingController namecontroler = TextEditingController();
+  String username1 = '';
   @override
   void initState() {
-    getname();
+    getnamefunction();
     super.initState();
   }
 
-  Future<void> getname() async {
-    await AppUtils.gettoken();
-    setState(() {});
+  Future<void> getnamefunction() async {
+    String name = await AppUtils.getname();
+    setState(() {
+      username1 = name;
+    });
   }
 
   @override
@@ -43,7 +46,7 @@ class _AccountState extends State<Account> {
                       ),
                       SizedBox(height: 10),
                       Text(
-                        AppUtils.gettoken().toString(),
+                        username1.isEmpty ? 'Player' : username1,
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                     ],
@@ -69,9 +72,9 @@ class _AccountState extends State<Account> {
             ),
             SizedBox(height: 100),
             InkWell(
-              onTap: () {
-                AppUtils.storename(namecontroler.text);
-                setState(() {});
+              onTap: () async {
+                await AppUtils.storename(namecontroler.text);
+                await getnamefunction();
               },
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 100),
