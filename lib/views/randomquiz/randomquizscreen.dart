@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizappwork/views/accountpage/account.dart';
 
 import 'package:quizappwork/views/dummy/dummy.dart';
 import 'package:quizappwork/views/dummy/indexclick.dart';
@@ -24,12 +25,15 @@ class _RandomState extends State<Random> {
             Padding(padding: EdgeInsets.all(10)),
             SizedBox(height: 50),
             //top section
-            _hicontainer(),
-            Text(
-              '   Let\'s play',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
+            _hicontainer(), SizedBox(height: 10),
+            Center(
+              child: Text(
+                ' --------Let\'s play--------',
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
               ),
             ),
             SizedBox(height: 20),
@@ -104,8 +108,18 @@ class _RandomState extends State<Random> {
 
       child: Row(
         children: [
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Account()),
+              );
+            },
+            child: Icon(Icons.person, color: Colors.amber),
+          ),
+          Spacer(),
           Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
                 'Hi, Player',
@@ -120,8 +134,6 @@ class _RandomState extends State<Random> {
               ),
             ],
           ),
-          Spacer(),
-          Icon(Icons.person, color: Colors.amber),
         ],
       ),
     );
