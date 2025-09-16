@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:quizappwork/controler/accountcontroler.dart';
 import 'package:quizappwork/views/accountpage/account.dart';
@@ -14,17 +16,19 @@ class Random extends StatefulWidget {
 }
 
 class _RandomState extends State<Random> {
-  String username1 = '';
+  String? username1;
   @override
   void initState() {
     getnamefunction();
+    log(getnamefunction().toString());
     super.initState();
   }
 
   Future<void> getnamefunction() async {
     String name = await AppUtils.getname();
+    log(name);
     setState(() {
-      username1 = name;
+      username1 = name.isNotEmpty ? name : 'Player';
     });
   }
 
@@ -129,6 +133,7 @@ class _RandomState extends State<Random> {
                 context,
                 MaterialPageRoute(builder: (context) => Account()),
               );
+              log(username1!);
             },
             child: Icon(Icons.person, color: Colors.amber),
           ),
@@ -137,7 +142,7 @@ class _RandomState extends State<Random> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                'Hi, ${username1.isEmpty ? 'Player' : '$username1'}',
+                'Hi, ${username1}',
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
