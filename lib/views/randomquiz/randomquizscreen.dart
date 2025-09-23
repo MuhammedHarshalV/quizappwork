@@ -1,7 +1,9 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:quizappwork/controler/accountcontroler.dart';
+import 'package:provider/provider.dart';
+
+import 'package:quizappwork/controler/providercontroler.dart';
 import 'package:quizappwork/views/accountpage/account.dart';
 
 import 'package:quizappwork/views/dummy/dummy.dart';
@@ -16,19 +18,16 @@ class Random extends StatefulWidget {
 }
 
 class _RandomState extends State<Random> {
-  String? username1;
   @override
   void initState() {
-    getnamefunction();
-    log(getnamefunction().toString());
+    watchname();
     super.initState();
   }
 
-  Future<void> getnamefunction() async {
-    String name = await AppUtils.getname();
-    log(name);
-    setState(() {
-      username1 = name.isNotEmpty ? name : 'Player';
+  Future<void> watchname() async {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await context.read<Providercontroler>().getname();
+      await context.read<Providercontroler>().getimage();
     });
   }
 
@@ -133,7 +132,6 @@ class _RandomState extends State<Random> {
                 context,
                 MaterialPageRoute(builder: (context) => Account()),
               );
-              log(username1!);
             },
             child: Icon(Icons.person, color: Colors.amber),
           ),
@@ -142,7 +140,7 @@ class _RandomState extends State<Random> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                'Hi, ${username1}',
+                'Hi, ${context.watch<Providercontroler>().username}',
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
