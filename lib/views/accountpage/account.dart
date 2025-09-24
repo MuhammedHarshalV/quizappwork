@@ -1,9 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:quizappwork/controler/providercontroler.dart';
+import 'package:quizappwork/views/alertdialogue.dart/alert.dart';
 
 class Account extends StatefulWidget {
   const Account({super.key});
@@ -42,13 +41,18 @@ class _AccountState extends State<Account> {
                     children: [
                       CircleAvatar(
                         radius: 40,
-                        backgroundImage: NetworkImage(
-                          context.watch<Providercontroler>().userimage!,
-                        ),
+                        backgroundImage:
+                            context.watch<Providercontroler>().userimage != null
+                                ? NetworkImage(
+                                  context.watch<Providercontroler>().userimage!,
+                                )
+                                : null,
                       ),
                       SizedBox(height: 10),
                       Text(
-                        userproviderwatch.username!,
+                        userproviderwatch.username != null
+                            ? userproviderwatch.username!
+                            : 'Player',
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                     ],
@@ -59,93 +63,9 @@ class _AccountState extends State<Account> {
                       showDialog(
                         context: context,
                         builder: (context) {
-                          return AlertDialog(
-                            backgroundColor: Colors.blueGrey,
-                            title: Center(
-                              child: Text(
-                                'IMAGES',
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            content: SizedBox(
-                              height: 150,
-                              width: double.maxFinite,
-                              child: GridView.builder(
-                                itemCount: 6,
-
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisSpacing: 10,
-                                      mainAxisSpacing: 10,
-                                      crossAxisCount: 3,
-                                    ),
-                                itemBuilder:
-                                    (context, index) => Expanded(
-                                      child: InkWell(
-                                        onTap: () {
-                                          context
-                                              .read<Providercontroler>()
-                                              .storeindex(index);
-                                        },
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                              image: NetworkImage(
-                                                images[index],
-                                              ),
-                                              fit: BoxFit.fill,
-                                            ),
-                                          ),
-                                          child:
-                                              context
-                                                          .watch<
-                                                            Providercontroler
-                                                          >()
-                                                          .imageindex ==
-                                                      index
-                                                  ? Center(
-                                                    child: Text(
-                                                      'selected',
-                                                      style: TextStyle(
-                                                        color: Colors.green,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                  )
-                                                  : null,
-                                        ),
-                                      ),
-                                    ),
-                              ),
-                            ),
-                            actions: [
-                              if (context
-                                      .watch<Providercontroler>()
-                                      .imageindex !=
-                                  null)
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.blue,
-                                    foregroundColor: Colors.white,
-                                  ),
-                                  onPressed: () async {
-                                    await context
-                                        .read<Providercontroler>()
-                                        .storeimage(
-                                          images[userproviderwatch.imageindex!],
-                                        );
-                                  },
-                                  child: Text('Save'),
-                                ),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  foregroundColor: Colors.red,
-                                ),
-                                onPressed: () {},
-                                child: Text('Delete&Clear'),
-                              ),
-                            ],
+                          return ALertdialogueset(
+                            images: images,
+                            userproviderwatch: userproviderwatch,
                           );
                         },
                       );
@@ -186,21 +106,40 @@ class _AccountState extends State<Account> {
                 height: 50,
                 width: 150,
 
-                child: Center(child: Text('Set Update')),
+                child: Center(
+                  child: Text(
+                    'Set Update',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
               ),
             ),
             SizedBox(height: 20),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 100),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(10),
+            InkWell(
+              onTap: () {
+                context.read<Providercontroler>().deleteimage();
+                context.read<Providercontroler>().deleteusername();
+              },
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 100),
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+
+                height: 50,
+                width: 150,
+
+                child: Center(
+                  child: Text(
+                    'Log Out',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
               ),
-
-              height: 50,
-              width: 150,
-
-              child: Center(child: Text('Log Out')),
             ),
           ],
         ),

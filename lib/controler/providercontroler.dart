@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -37,6 +35,21 @@ class Providercontroler with ChangeNotifier {
 
   Future<void> storeindex(int imageget) async {
     imageindex = imageget;
+    notifyListeners();
+  }
+
+  Future<void> deleteimage() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('userimage');
+    userimage = null;
+    notifyListeners();
+  }
+
+  Future<void> deleteusername() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('username');
+    username = null;
+    imageindex = null;
     notifyListeners();
   }
 }

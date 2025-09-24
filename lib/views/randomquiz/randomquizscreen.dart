@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,15 +18,11 @@ class Random extends StatefulWidget {
 class _RandomState extends State<Random> {
   @override
   void initState() {
-    watchname();
-    super.initState();
-  }
-
-  Future<void> watchname() async {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       await context.read<Providercontroler>().getname();
       await context.read<Providercontroler>().getimage();
     });
+    super.initState();
   }
 
   @override
@@ -140,7 +134,9 @@ class _RandomState extends State<Random> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                'Hi, ${context.watch<Providercontroler>().username}',
+                context.watch<Providercontroler>().username != null
+                    ? 'Hi, ${context.watch<Providercontroler>().username}'
+                    : 'Hi, Player',
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
