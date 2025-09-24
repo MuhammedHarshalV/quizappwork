@@ -20,9 +20,10 @@ class ALertdialogueset extends StatelessWidget {
         child: Text('IMAGES', style: TextStyle(fontWeight: FontWeight.bold)),
       ),
       content: SizedBox(
-        height: 150,
         width: double.maxFinite,
         child: GridView.builder(
+          physics: NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
           itemCount: 6,
 
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
