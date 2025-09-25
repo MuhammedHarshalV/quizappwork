@@ -32,31 +32,29 @@ class ALertdialogueset extends StatelessWidget {
             crossAxisCount: 3,
           ),
           itemBuilder:
-              (context, index) => Expanded(
-                child: InkWell(
-                  onTap: () {
-                    context.read<Providercontroler>().storeindex(index);
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(images[index]),
-                        fit: BoxFit.fill,
-                      ),
+              (context, index) => InkWell(
+                onTap: () {
+                  context.read<Providercontroler>().storeindex(index);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(images[index]),
+                      fit: BoxFit.fill,
                     ),
-                    child:
-                        context.watch<Providercontroler>().imageindex == index
-                            ? Center(
-                              child: Text(
-                                'selected',
-                                style: TextStyle(
-                                  color: Colors.green,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            )
-                            : null,
                   ),
+                  child:
+                      context.watch<Providercontroler>().imageindex == index
+                          ? Center(
+                            child: Text(
+                              'selected',
+                              style: TextStyle(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          )
+                          : null,
                 ),
               ),
         ),
