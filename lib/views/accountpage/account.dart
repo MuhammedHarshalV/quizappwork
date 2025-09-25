@@ -13,13 +13,14 @@ class Account extends StatefulWidget {
 
 class _AccountState extends State<Account> {
   List<String> images = [
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0YTTsLcKxLdEix8xrjrh6Vu32JZdoGWuNwg&s',
-    'https://www.shutterstock.com/shutterstock/photos/527480839/display_1500/stock-vector-isolated-man-cartoon-design-527480839.jpg',
-    'https://www.shutterstock.com/shutterstock/photos/2303601041/display_1500/stock-vector-smiling-student-in-modern-sportswear-over-white-2303601041.jpg',
-    'https://www.shutterstock.com/shutterstock/photos/1918309769/display_1500/stock-photo-beautiful-gorgeous-s-mid-aged-mature-woman-looking-at-camera-isolated-on-white-mature-old-lady-1918309769.jpg',
-    'https://www.shutterstock.com/shutterstock/photos/2099982595/display_1500/stock-photo-smiling-middle-aged-african-american-woman-with-orange-headscarf-beautiful-black-woman-in-casual-2099982595.jpg',
-    'https://www.shutterstock.com/shutterstock/photos/2477779589/display_1500/stock-photo-portrait-of-a-successful-business-woman-in-sui-2477779589.jpg',
+    'assets/m1.jpeg',
+    'assets/m2.jpg',
+    'assets/m3.jpg',
+    'assets/m4.jpg',
+    'assets/m5.jpg',
+    'assets/m6.jpg',
   ];
+
   TextEditingController namecontroler = TextEditingController();
 
   @override
@@ -43,7 +44,7 @@ class _AccountState extends State<Account> {
                         radius: 40,
                         backgroundImage:
                             context.watch<Providercontroler>().userimage != null
-                                ? NetworkImage(
+                                ? AssetImage(
                                   context.watch<Providercontroler>().userimage!,
                                 )
                                 : null,

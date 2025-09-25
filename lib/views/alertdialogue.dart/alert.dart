@@ -40,7 +40,7 @@ class ALertdialogueset extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: NetworkImage(images[index]),
+                        image: AssetImage(images[index]),
                         fit: BoxFit.fill,
                       ),
                     ),

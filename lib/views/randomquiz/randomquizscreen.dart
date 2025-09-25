@@ -127,7 +127,15 @@ class _RandomState extends State<Random> {
                 MaterialPageRoute(builder: (context) => Account()),
               );
             },
-            child: Icon(Icons.person, color: Colors.amber),
+            child:
+                context.watch<Providercontroler>().userimage != null
+                    ? CircleAvatar(
+                      radius: 30,
+                      backgroundImage: AssetImage(
+                        context.watch<Providercontroler>().userimage!,
+                      ),
+                    )
+                    : Icon(Icons.person, color: Colors.amber),
           ),
           Spacer(),
           Column(
