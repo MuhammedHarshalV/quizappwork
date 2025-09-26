@@ -45,14 +45,20 @@ class ALertdialogueset extends StatelessWidget {
                   ),
                   child:
                       context.watch<Providercontroler>().imageindex == index
-                          ? Center(
-                            child: Text(
-                              'selected',
-                              style: TextStyle(
+                          ? Column(
+                            children: [
+                              Spacer(),
+                              Container(
                                 color: Colors.green,
-                                fontWeight: FontWeight.bold,
+                                child: Text(
+                                  'selected',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ),
-                            ),
+                            ],
                           )
                           : null,
                 ),

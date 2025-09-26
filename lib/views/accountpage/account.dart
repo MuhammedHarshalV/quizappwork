@@ -95,6 +95,7 @@ class _AccountState extends State<Account> {
               onTap: () async {
                 if (namecontroler.text.isNotEmpty) {
                   await userprovider.storename(namecontroler.text);
+                  Navigator.pop(context);
                 }
               },
               child: Container(
@@ -123,6 +124,7 @@ class _AccountState extends State<Account> {
               onTap: () {
                 context.read<Providercontroler>().deleteimage();
                 context.read<Providercontroler>().deleteusername();
+                Navigator.pop(context);
               },
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 100),
@@ -138,6 +140,32 @@ class _AccountState extends State<Account> {
                   child: Text(
                     'Log Out',
                     style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+            InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 100),
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+
+                height: 50,
+                width: 150,
+
+                child: Center(
+                  child: Text(
+                    'Home',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),

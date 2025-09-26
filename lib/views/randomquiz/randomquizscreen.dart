@@ -135,7 +135,12 @@ class _RandomState extends State<Random> {
                         context.watch<Providercontroler>().userimage!,
                       ),
                     )
-                    : Icon(Icons.person, color: Colors.amber),
+                    : Row(
+                      children: [
+                        Icon(Icons.menu, color: Colors.white),
+                        Icon(Icons.person, color: Colors.amber),
+                      ],
+                    ),
           ),
           Spacer(),
           Column(
